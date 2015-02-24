@@ -5,6 +5,7 @@ package localtest;
  */
 
 
+import localtest.pages.LoginPage;
 import localtest.pages.PeopleMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,6 +22,7 @@ public class PeopleListTest  {
     public WebDriver driver;
     public WebDriverWait wait;
     PeopleMainPage peopleMainPage;
+    LoginPage loginPage;
 
     @BeforeClass(alwaysRun = true)
     public void setup(){
@@ -28,6 +30,7 @@ public class PeopleListTest  {
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         peopleMainPage = PageFactory.initElements(driver, PeopleMainPage.class);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
     }
 
 
@@ -38,8 +41,12 @@ public class PeopleListTest  {
 
 
     @Test
-    public void test() throws Exception {
-        PeopleMainPage PeoplePage = new PeopleMainPage();
+    public void filterActivePeopleFromShortcut_9778() throws Exception {
+        loginPage.login();
+        peopleMainPage.clickToActiveFilter();
+        peopleMainPage.checkSelectedActiveElement("Active");
+
+
 
 
 

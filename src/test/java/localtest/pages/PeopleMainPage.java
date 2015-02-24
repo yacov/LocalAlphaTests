@@ -9,11 +9,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 /**
  * Created by Iakov Volf on 2/16/2015.
  */
-public class PeopleMainPage {
-    WebDriver driver;
+public class PeopleMainPage extends Page {
+
 
     @FindBy(id = "body_body_mainTab_AT0")
     WebElement peopleListPageLink;
@@ -61,16 +63,23 @@ public class PeopleMainPage {
     WebElement peopleActiveMenuActiveWithoutSelfService;
     @FindBy(xpath = "//*[@id='body_body_popupQuery_CSD-1']/table/tbody/tr[6]")
     WebElement peopleActiveMenuInactive;
+    @FindBy(xpath = "*[@id='body_body_lnkQuery_BTC']/span")
+    WebElement peopleSelectedActiveMenuElement;
+
+    //upper menu
+    @FindBy(id = "body_body_lblIndicator_Active")
+    WebElement peopleMainActiveFilter;
 
 
-    public PeopleMainPage() {
+    public PeopleMainPage(WebDriver driver) {
 
-        this.driver = driver;
+        super(driver);
 
         //This initElements method will create all WebElements
 
         PageFactory.initElements(driver, this);
-
+        this.PAGE_URL = "https://alphaex.insynctiveapps.com/Insynctive.Hub/Protected/Invitations.aspx";
+        this.PAGE_TITLE = "Invitations";
     }
 
     public static PeopleMainPage navigateTo(WebDriver driver) {
@@ -78,7 +87,16 @@ public class PeopleMainPage {
                 PeopleMainPage.class);
     }
 
+    public void clickToActiveFilter() {
+        clickElement(peopleMainActiveFilter);
+    }
+
     public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
     }
+
+    public void checkSelectedActiveElement(String text) {
+        assertEquals(text, peopleSelectedActiveMenuElement.getText());
+    }
+
 }
