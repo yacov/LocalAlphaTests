@@ -17,11 +17,12 @@ import static org.testng.AssertJUnit.assertEquals;
 public class PeopleMainPage extends Page {
 
 
+    @FindBy(xpath = "*[@id='body_body_lnkQuery_BTC']/span")
+    public WebElement peopleSelectedActiveMenuElement;
     @FindBy(id = "body_body_mainTab_AT0")
     WebElement peopleListPageLink;
     @FindBy(id = "body_body_mainTab_T1")
     WebElement peopleDirectoryPageLink;
-
     //Column Headers
     @FindBy(id = "ctl00_ctl00_body_body_mainTab_grdListPeople_col1")
     WebElement peopleFirstNameColumnHeader;
@@ -35,7 +36,6 @@ public class PeopleMainPage extends Page {
     WebElement peopleStatusColumnHeader;
     @FindBy(id = "ctl00_ctl00_body_body_mainTab_grdListPeople_col6")
     WebElement peopleOpenColumnHeader;
-
     //Column Inputs
     @FindBy(id = "ctl00_ctl00_body_body_mainTab_grdListPeople_DXFREditorcol1_I")
     WebElement peopleFirstNameColumnInput;
@@ -49,7 +49,6 @@ public class PeopleMainPage extends Page {
     WebElement peopleStatusColumnInput;
     @FindBy(id = "ctl00_ctl00_body_body_mainTab_grdListPeople_DXDataRow0")
     WebElement peopleFirstDataRow;
-
     //Active menu
     @FindBy(xpath = "//*[@id='body_body_popupQuery_CSD-1']/table/tbody/tr[1]")
     WebElement peopleActiveMenuActive;
@@ -63,13 +62,13 @@ public class PeopleMainPage extends Page {
     WebElement peopleActiveMenuActiveWithoutSelfService;
     @FindBy(xpath = "//*[@id='body_body_popupQuery_CSD-1']/table/tbody/tr[6]")
     WebElement peopleActiveMenuInactive;
-    @FindBy(xpath = "*[@id='body_body_lnkQuery_BTC']/span")
-    WebElement peopleSelectedActiveMenuElement;
-
     //upper menu
     @FindBy(id = "body_body_lblIndicator_Active")
     WebElement peopleMainActiveFilter;
-
+    @FindBy(id = "body_body_lblIndicator_PFLogin")
+    WebElement peopleMainPendinfFirstLoginFilter;
+    @FindBy(id = "body_body_lblIndicator_WSS")
+    WebElement peopleMainWithoutSelfServiceFilter;
 
     public PeopleMainPage(WebDriver driver) {
 
@@ -91,6 +90,13 @@ public class PeopleMainPage extends Page {
         clickElement(peopleMainActiveFilter);
     }
 
+    public void clickToPDFilter() {
+        clickElement(peopleMainPendinfFirstLoginFilter);
+    }
+
+    public void clickToWSSilter() {
+        clickElement(peopleMainWithoutSelfServiceFilter);
+    }
     public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
     }

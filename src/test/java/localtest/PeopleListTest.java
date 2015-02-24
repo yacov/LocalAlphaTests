@@ -44,12 +44,25 @@ public class PeopleListTest  {
     public void filterActivePeopleFromShortcut_9778() throws Exception {
         loginPage.login();
         peopleMainPage.clickToActiveFilter();
+        peopleMainPage.waitUntilElementIsLoaded(peopleMainPage.peopleSelectedActiveMenuElement);
         peopleMainPage.checkSelectedActiveElement("Active");
 
+    }
 
+    @Test
+    public void filterPendingFirstLoginFromShortcut_9779() throws Exception {
+        loginPage.login();
+        peopleMainPage.clickToPDFilter();
+        peopleMainPage.waitUntilElementIsLoaded(peopleMainPage.peopleSelectedActiveMenuElement);
+        peopleMainPage.checkSelectedActiveElement("Active Pending First Login");
+    }
 
-
-
+    @Test
+    public void filterWithoutSelfServiceFromShortcut_9780() throws Exception {
+        loginPage.login();
+        peopleMainPage.clickToWSSilter();
+        peopleMainPage.waitUntilElementIsLoaded(peopleMainPage.peopleSelectedActiveMenuElement);
+        peopleMainPage.checkSelectedActiveElement("Active without Self Service");
     }
     //@Test
     public void testLoginFallure () throws Exception {
