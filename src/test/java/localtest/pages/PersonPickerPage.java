@@ -73,6 +73,6 @@ public void addTextToSearch (String text) {
     }
 
     public void checkifPickerWindowOpened(){
-        verifyElementIsPresent(pickerPopUpWindow);
+        verifyElementIsPresent(pickProcessedPersonBtn);
     }
 }

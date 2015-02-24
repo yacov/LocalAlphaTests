@@ -49,7 +49,7 @@ public class PersonPickerTest  {
         personpickerpage.loadPage();
         personpickerpage.clickPersonLink();
         personpickerpage.clickPersonBtn();
-personpickerpage.checkProceededPerson("Processed Person");
+        personpickerpage.checkProceededPerson("Processed Person");
     }
 
     @Test
